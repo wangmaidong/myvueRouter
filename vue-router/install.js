@@ -14,6 +14,7 @@ const install = function (_Vue) {
       if (this.$options.router) {
         this._routerRoot = this // 将当前根实例放到了_routerRoot
         this._router = this.$options.router
+        this._router.init(this)
       } else {
         this._routerRoot = this.$parent && this.$parent._routerRoot
       }
