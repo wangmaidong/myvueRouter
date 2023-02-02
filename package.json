@@ -1,0 +1,24 @@
+{
+  "name": "myvueRouter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wangmaidong/myvueRouter.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wangmaidong/myvueRouter/issues"
+  },
+  "homepage": "https://github.com/wangmaidong/myvueRouter#readme",
+  "dependencies": {
+    "vue-router": "^3.1.6",
+    "vue-template-compiler": "^2.7.14"
+  }
+}
