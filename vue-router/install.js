@@ -3,7 +3,7 @@ import RouterView from './components/router-view.js'
 import RouterLink from './components/router-link.js'
 const install = function (_Vue) {
   // install 方法内部一般用来定义一些全局的内容 指令 全局组件 给原型扩展方法
-  console.log('install')
+  // console.log('install')
   Vue = _Vue
   Vue.component('router-link', RouterLink)
   Vue.component('router-view', RouterView)
@@ -18,7 +18,7 @@ const install = function (_Vue) {
       } else {
         this._routerRoot = this.$parent && this.$parent._routerRoot
       }
-      console.log(this._routerRoot._router)
+      // console.log(this._routerRoot._router)
     }
   })
 }
