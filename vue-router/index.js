@@ -35,6 +35,10 @@ class VueRouter {
     // getCurrentLocation为子类方法 获取当前路径信息
     // setupListener hash监听
     history.transitionTo(history.getCurrentLocation(), setupHashListener)
+    // 初始化时都需要调用更_route的方法
+    history.listen((route) => {
+      app._route = route
+    })
   }
 }
 VueRouter.install = install

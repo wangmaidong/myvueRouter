@@ -15,10 +15,23 @@ const install = function (_Vue) {
         this._routerRoot = this // 将当前根实例放到了_routerRoot
         this._router = this.$options.router
         this._router.init(this)
+        // 如果用户更改了current 是没有效果的，需要更改_route
+        Vue.util.defineReactive(this, '_route', this._router.history.current)
+
       } else {
         this._routerRoot = this.$parent && this.$parent._routerRoot
       }
       // console.log(this._routerRoot._router)
+    }
+  })
+  Object.defineProperty(Vue.prototype, '$route', {
+    get() {
+      return this._routerRoot._route; // 取current
+    }
+  })
+  Object.defineProperty(Vue.prototype, '$router', {
+    get() {
+      return this._routerRoot._router
     }
   })
 }

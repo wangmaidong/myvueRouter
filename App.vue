@@ -16,7 +16,6 @@ export default {
   },
 
   created () {
-
   },
 
   methods: {
