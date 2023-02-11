@@ -40,6 +40,10 @@ class VueRouter {
       app._route = route
     })
   }
-}
+  push(location) {
+    const history = this.history
+    window.location.hash = location
+  }
+ }
 VueRouter.install = install
 export default VueRouter
