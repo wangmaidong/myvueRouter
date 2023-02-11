@@ -11,6 +11,19 @@ export const createRoute = (record, location) => { // 根据匹配到的记录�
     matched
   }
 }
+
+const runQueue = (queue, iterator, complete) => {
+  function next(index) {
+    if (index >= queue.length) {
+      return complete()
+    }
+    let hook = queue[index]
+    iterator(hook, () => {
+      next(index+1)
+    })
+  }
+  next(0)
+}
 export default class History {
   constructor(router) {
     this.router = router
@@ -31,9 +44,16 @@ export default class History {
     if (location === this.current.path && this.current.matched.length === current.matched.length) {
       return
     }
-    this.current = current // 这个current只是响应式的 他的变化不会更新_route
-    this.cb && this.cb(current)
-    complete && complete()
+    const iterator = (hook, next) => {
+      hook(current, this.current, next)
+    }
+    // 我们需要调用钩子函数
+    let queue = this.router.beforeHooks
+    runQueue(queue, iterator, () => {
+      this.current = current // 这个current只是响应式的 他的变化不会更新_route
+      this.cb && this.cb(current)
+      complete && complete()
+    })
   }
   listen(cb) {
     this.cb = cb
